@@ -1,0 +1,114 @@
+<html xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Library Dbpedia</title>
+    <!-- CSS Global Compulsory -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+    <style>
+        .poz {
+            background-image: url('https://images.unsplash.com/photo-1507842217343-583bb7270b66?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80');
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: 100% 100%;
+        }
+    </style>
+
+</head>
+<body>
+<div class="container">
+    <div class="poz">
+    <h1 style="text-align: center; color: white">Dbpedia библиотека</h1>
+
+    <br/><br/>
+
+
+        <form class="form"  method="get" action="/search/book" style="display: inline-block; ">
+            <div class="jumbotron" style="margin-left: 5px">
+            <h4>Пребарување според насловот на книгата</h4>
+            <div class="form-group">
+                <label for="bookName">Наслов на книга</label>
+                <input th:if="${(param.bookName == null) }" id="bookName" type="text" class="form-control" name="bookName" placeholder="Внеси наслов на книга" required>
+                <input th:if="${(param.bookName != null) }" id="bookName2" type="text" class="form-control" name="bookName" th:value="${param.bookName}" required>
+
+                <br/>
+                <label for="order">Подреди во</label>
+                <select id="order" name="order">
+                    <option value="asc">Растечки редослед</option>
+                    <option value="desc">Опаѓачки редослед</option>
+                </select>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Пребарај</button>
+            </div>
+        </form>
+
+
+    <form class="form" method="get" action="/search/author" style="display: inline-block; float: right; ">
+        <div class="jumbotron" style="margin-right: 5px">
+        <h4>Пребарување според името на авторот</h4>
+
+        <div class="form-group">
+            <div th:if="${(param.authorName != null) }">
+                <label for="authorName1">Име на автор</label>
+                <input id="authorName1" type="text" class="form-control" name="authorName" th:value="${param.authorName}" required>
+            </div>
+
+            <div th:if="${(param.authorName == null) }">
+                <label for="authorName2">Име на автор</label>
+                <input id="authorName2" type="text" class="form-control" name="authorName" placeholder="Внеси име на автор" required>
+            </div>
+            <br/>
+            <label for="orderr">Подреди во</label>
+            <select id="orderr" name="order">
+                <option value="asc">Растечки редослед</option>
+                <option value="desc">Опаѓачки редослед</option>
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Пребарај</button>
+        </div>
+    </form>
+
+
+        <br/><br/>
+    </div>
+        <table class="table table-striped">
+            <thead class="thead-dark">
+                <th scope="col">Книга</th>
+                <th scope="col">Автор</th>
+            </thead>
+            <tbody>
+            <tr th:each="v : ${list}">
+
+                <td>
+                    <!--  <a th:href="'http://localhost:8080/book/details?bookLink='+${v.bookLink}" th:text="${v.bookName}" /> -->
+                    <a th:href="'http://localhost:8080/book/details?book='+${v.bookName}" th:text="${v.bookName}" />
+                </td>
+                <td>
+                    <a th:href="'http://localhost:8080/author/details?author='+${v.authorName}" th:text="${v.authorName}" />
+                </td>
+            </tbody>
+
+
+
+
+            </tr>
+        </table>
+
+
+
+
+
+        <br/> <br/>
+
+
+    </div>
+
+
+</body>
+</html>

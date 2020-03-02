@@ -1,0 +1,54 @@
+<html xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Library Dbpedia</title>
+    <!-- CSS Global Compulsory -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+    <style>
+        .poz {
+            background-image: url('https://images.unsplash.com/photo-1507842217343-583bb7270b66?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80');
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: 100% 100%;
+        }
+    </style>
+
+</head>
+<body>
+<div class="container">
+    <div class="poz">
+        <h1 style="text-align: center; color: white"><a href="/" style="color: white">Dbpedia библиотека</a> </h1>
+
+
+        <br/><br/>
+
+        <!--  authorLink,  bookLink,  bookName,  bookAbstract,  comment,   numberOfPages -->
+
+        <div class="card bg-light mb-6" style="max-width: 50%; margin-left: 25%">
+            <div class="card-header" style="text-align: center;"><h4>Детали за книгата</h4></div>
+            <div class="card-body">
+                <b>Име на книгата: </b> <span th:text="${book.bookName}"></span><br/><br/>
+                <b>Линк до книгата: </b> <a th:href="${book.bookLink}" th:text="${book.bookLink}"/><br/><br/>
+                <b>Aвтор: </b> <a th:href="'http://localhost:8080/author/details?author='+${book.authorName}" th:text="${book.authorName}" /><br/><br/>
+                <b>Линк до авторот: </b> <a th:href="${book.authorLink}" th:text="${book.authorLink}"/><br/><br/>
+                <b>Апстракт: </b> <span th:text="${book.bookAbstract}"></span><br/><br/>
+                <b>Коментар: </b> <span th:text="${book.comment}"></span><br/><br/>
+                <b>Број на страници: </b> <span th:text="${book.numberOfPages}"></span>
+
+            </div>
+        </div>
+
+        <br/><br/>
+
+
+    </div>
+</div>
+
+
+</body>
+</html>
